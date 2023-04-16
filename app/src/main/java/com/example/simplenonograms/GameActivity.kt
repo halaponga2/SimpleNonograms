@@ -51,7 +51,6 @@ class GameActivity : AppCompatActivity() {
 
 
                     if(array contentDeepEquals levelArray){
-                        Toast.makeText(this@GameActivity,"Win!",Toast.LENGTH_SHORT).show()
                         gameDoneAlert()
                     }
                 }
@@ -159,16 +158,25 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun createLevel(){
-        val levelName = intent.getStringExtra("levelName")
-        val lineList = readLevelFile(this, levelName.toString())
-        countRowsAndCols(lineList)
-        rowCount = countRowsAndCols(lineList).first
-        colCount = countRowsAndCols(lineList).second
-        levelArray = Array(rowCount) { Array<Int>(colCount) {0} }
-        array = Array(rowCount) { Array<Int>(colCount) {0} }
-        for (i in 0 until lineList.size ){
-            for (j in 0 until lineList[0].length){
-                levelArray[i][j] = lineList[i][j].toString().toInt()
+        val isRandom = intent.getBooleanExtra("isRandom",false)
+        if (isRandom){
+            rowCount = intent.getIntExtra("rowsCount",5)
+            colCount = intent.getIntExtra("colsCount",5)
+            levelArray = Array(rowCount){Array<Int>(colCount){(0..1).random()}}
+            array = Array(rowCount) { Array<Int>(colCount) {0} }
+        }
+        else{
+            val levelName = intent.getStringExtra("levelName")
+            val lineList = readLevelFile(this, levelName.toString())
+            countRowsAndCols(lineList)
+            rowCount = countRowsAndCols(lineList).first
+            colCount = countRowsAndCols(lineList).second
+            levelArray = Array(rowCount) { Array<Int>(colCount) {0} }
+            array = Array(rowCount) { Array<Int>(colCount) {0} }
+            for (i in 0 until lineList.size ){
+                for (j in 0 until lineList[0].length){
+                    levelArray[i][j] = lineList[i][j].toString().toInt()
+                }
             }
         }
     }
@@ -178,7 +186,7 @@ class GameActivity : AppCompatActivity() {
             .setTitle("Finished")
             .setMessage("Level Complete")
             .setPositiveButton(
-                "Select Level"
+                "Go Back"
             ) { _: DialogInterface, _: Int ->
                 (this as AppCompatActivity).finish()
             }
