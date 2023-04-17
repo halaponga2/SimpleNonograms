@@ -165,7 +165,6 @@ class GameActivity : AppCompatActivity() {
         else{
             val levelName = intent.getStringExtra("levelName")
             val lineList = readLevelFile(this, levelName.toString())
-            countRowsAndCols(lineList)
             rowCount = countRowsAndCols(lineList).first
             colCount = countRowsAndCols(lineList).second
             levelArray = Array(rowCount) { Array<Int>(colCount) {0} }

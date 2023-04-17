@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Nonograms</string>
+    <string name="level_select_button">Выбрать уровень</string>
+    <string name="random_level_button">Случайный уровень</string>
+    <string name="start_level_button">Начать</string>
+    <string name="random_level_dialog_title">Размер уровня</string>
+    <string name="random_level_dialog_message">Выберите количество строк и столбцов</string>
+    <string name="random_level_dialog_create">Создать</string>
+    <string name="random_level_dialog_cancel">Отмена</string>
+    <string name="game_done_title">Победа</string>
+    <string name="game_done_message">Уровень пройден</string>
+    <string name="game_done_back_button">Назад</string>
+    <string name="game_done_reset_button">Переиграть</string>
+    <string name="rows_x_cols">%1$d x %2$d</string>
+</resources>
