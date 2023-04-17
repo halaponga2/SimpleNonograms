@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simplenonograms.databinding.ActivityLevelSelectBinding
 
 class LevelSelectActivity : AppCompatActivity() , LevelSelectAdapter.StartLevel {
-    lateinit var binding: ActivityLevelSelectBinding
+    private lateinit var binding: ActivityLevelSelectBinding
     private lateinit var adapter: RecyclerView.Adapter<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {

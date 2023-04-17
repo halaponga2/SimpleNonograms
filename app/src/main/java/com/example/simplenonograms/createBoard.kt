@@ -9,7 +9,7 @@ fun countRowsAndCols(levelArray:MutableList<String>):Pair<Int,Int> {
     return Pair(rowCount, colCount)
 }
 
-fun readLevelFile(context: Context, levelName: String = "Level 1"):MutableList<String>{
+fun readLevelFile(context: Context, levelName: String):MutableList<String>{
     val inputStream: InputStream = context.resources.assets.open("levels/$levelName")
     val lineList = mutableListOf<String>()
     inputStream.bufferedReader().forEachLine { lineList.add(it)}

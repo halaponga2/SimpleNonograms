@@ -9,8 +9,8 @@ import com.example.simplenonograms.databinding.ActivityMainBinding
 import com.example.simplenonograms.databinding.DialogueRandomLevelBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var bindingMain: ActivityMainBinding
-    lateinit var bindingDialog:DialogueRandomLevelBinding
+    private lateinit var bindingMain: ActivityMainBinding
+    private lateinit var bindingDialog:DialogueRandomLevelBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-        AlertDialog.Builder(this).setTitle("Level Size").setMessage("Choose number of rows and columns")
+        AlertDialog.Builder(this).setTitle(R.string.random_level_dialog_title).setMessage(R.string.random_level_dialog_message)
             .setView(bindingDialog.root)
-            .setPositiveButton("Create")
+            .setPositiveButton(R.string.random_level_dialog_create)
             {_,_->val intent = Intent(this,GameActivity::class.java)
             intent.putExtra("isRandom",true)
             intent.putExtra("rowsCount",bindingDialog.rowsPicker.value)
             intent.putExtra("colsCount",bindingDialog.colsPicker.value)
             startActivity(intent)}
-            .setNegativeButton("Cancel"){_,_->}.create().show()
+            .setNegativeButton(R.string.random_level_dialog_cancel){_,_->}.create().show()
     }
 
 }

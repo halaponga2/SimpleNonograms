@@ -4,13 +4,11 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.example.simplenonograms.databinding.ActivityGameBinding
@@ -19,11 +17,11 @@ import com.example.simplenonograms.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
 
-    var rowCount = 0
-    var colCount = 0
-    lateinit var array : Array<Array<Int>>
-    lateinit var levelArray : Array<Array<Int>>
-    lateinit var binding: ActivityGameBinding
+    private var rowCount = 0
+    private var colCount = 0
+    private lateinit var array : Array<Array<Int>>
+    private lateinit var levelArray : Array<Array<Int>>
+    private lateinit var binding: ActivityGameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,16 +128,15 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    fun dpToPx(dp: Int): Int {
+    private fun dpToPx(dp: Int): Int {
         return (dp * Resources.getSystem().displayMetrics.density).toInt()
     }
 
 
-    fun countTrueCellsInLine(arr:Array<Int>):String{
+    private fun countTrueCellsInLine(arr:Array<Int>):String{
         var outputStr = ""
         var count = 0
         for (i in arr.indices) {
-            Log.d("trueCellsInfoVertical","Элемент массива ${i}: ${arr[i]}")
             if (arr[i] == 1) {
                 count++
             } else {
@@ -157,7 +154,7 @@ class GameActivity : AppCompatActivity() {
         return outputStr.dropLast(1)
     }
 
-    fun createLevel(){
+    private fun createLevel(){
         val isRandom = intent.getBooleanExtra("isRandom",false)
         if (isRandom){
             rowCount = intent.getIntExtra("rowsCount",5)
@@ -181,17 +178,17 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    fun gameDoneAlert() {
+    private fun gameDoneAlert() {
         AlertDialog.Builder(this)
-            .setTitle("Finished")
-            .setMessage("Level Complete")
+            .setTitle(R.string.game_done_title)
+            .setMessage(R.string.game_done_message)
             .setPositiveButton(
-                "Go Back"
+                R.string.game_done_back_button
             ) { _: DialogInterface, _: Int ->
                 (this as AppCompatActivity).finish()
             }
             .setNegativeButton(
-                "Reset"
+                R.string.game_done_reset_button
             ) { _: DialogInterface, _: Int ->
                 val mIntent = intent
                 finish()
